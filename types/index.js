@@ -10,6 +10,7 @@ const {
 
 const UserType = new GraphQLObjectType({
   name: "User",
+  description: "This type relates to server members.",
   fields: () => {
     return {
       id: {
