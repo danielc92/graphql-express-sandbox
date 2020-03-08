@@ -1,23 +1,44 @@
 const express = require("express")
 const graphqlHTTP = require("express-graphql")
-const { buildSchema } = require("graphql")
-
+const { GraphQLObjectType, GraphQLID, GraphQLSchema } = require("graphql")
+const Users = require("./data/users.json")
 const app = express()
 
-const schema = buildSchema(`
-type Query {
-    hello: [String]
-}`)
+const UserType = GraphQLObjectType({
+  name: "User",
+  fields: () => {
+    id: {
+      type: GraphQLID
+    },
+    first_name: 
+    
+  }
+})
+const RootQuery = GraphQLObjectType({
+  name: "Query",
+  fields: {
+    users: {
+      type: UserType,
+      resolve(parent, args) {
+        return Users
+      }
+    }
+  }
+})
 
-const root = {
-  hello: () => ["helo", "world"]
-}
+const RootMutation = GraphQLObjectType({
+  name: "Mutation"
+})
+
+const Schema = GraphQLSchema({
+  query: RootQuery,
+  mutation: RootMutation
+})
 
 app.use(
   "/graphql",
   graphqlHTTP({
     schema: schema,
-    rootValue: root,
     graphiql: true
   })
 )
