@@ -1,26 +1,26 @@
 [
   {
     "id": 1,
-    "log_message": "A log message",
-    "log_type": "INFO",
-    "log_timestamp": 1583661471568
+    "message": "A log message",
+    "type": "INFO",
+    "timestamp": 1583661471568
   },
   {
     "id": 2,
-    "log_message": "Parsing error occurred.",
-    "log_type": "ERROR",
-    "log_timestamp": 1583661471568
+    "message": "Parsing error occurred.",
+    "type": "ERROR",
+    "timestamp": 1583661471568
   },
   {
     "id": 3,
-    "log_message": "An info log message",
-    "log_type": "INFO",
-    "log_timestamp": 1583661471568
+    "message": "An info log message",
+    "type": "INFO",
+    "timestamp": 1583661471568
   },
   {
     "id": 4,
-    "log_message": "A warning log message.",
-    "log_type": "WARNING",
-    "log_timestamp": 1583661471568
+    "message": "A warning log message.",
+    "type": "WARNING",
+    "timestamp": 1583661471568
   }
 ]
