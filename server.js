@@ -47,9 +47,9 @@ const RootMutation = new GraphQLObjectType({
     insertUser: {
       type: UserType,
       args: {
-        id: { type: GraphQLID },
-        first_name: { type: GraphQLString },
-        last_name: { type: GraphQLString }
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        first_name: { type: new GraphQLNonNull(GraphQLString) },
+        last_name: { type: new GraphQLNonNull(GraphQLString) }
       },
       resolve(parent, args) {
         const { id, first_name, last_name } = args
@@ -63,6 +63,12 @@ const RootMutation = new GraphQLObjectType({
         return user
       }
     }
+    // findUser: {
+    //   type: UserType,
+    //   args: {
+    //     id: { type: new GraphQLNonNull(GraphQLID) }
+    //   }
+    // }
   }
 })
 
