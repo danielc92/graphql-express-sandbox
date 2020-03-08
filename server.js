@@ -1,24 +1,37 @@
 const express = require("express")
 const graphqlHTTP = require("express-graphql")
-const { GraphQLObjectType, GraphQLID, GraphQLSchema } = require("graphql")
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLID,
+  GraphQLSchema,
+  GraphQLList
+} = require("graphql")
 const Users = require("./data/users.json")
 const app = express()
 
-const UserType = GraphQLObjectType({
+const UserType = new GraphQLObjectType({
   name: "User",
   fields: () => {
-    id: {
-      type: GraphQLID
-    },
-    first_name: 
-    
+    return {
+      id: {
+        type: GraphQLID
+      },
+      first_name: {
+        type: GraphQLString
+      },
+      last_name: {
+        type: GraphQLString
+      }
+    }
   }
 })
-const RootQuery = GraphQLObjectType({
+
+const RootQuery = new GraphQLObjectType({
   name: "Query",
   fields: {
     users: {
-      type: UserType,
+      type: GraphQLList(UserType),
       resolve(parent, args) {
         return Users
       }
@@ -26,11 +39,26 @@ const RootQuery = GraphQLObjectType({
   }
 })
 
-const RootMutation = GraphQLObjectType({
-  name: "Mutation"
+const RootMutation = new GraphQLObjectType({
+  name: "Mutation",
+  fields: {
+    insertUser: {
+      type: UserType,
+      args: {
+        id: { type: GraphQLID },
+        first_name: { type: GraphQLString },
+        last_name: { type: GraphQLString }
+      }
+    }
+  },
+  resolve(parent, args) {
+    const { id, first_name, last_name } = args
+    let user = { id, first_name, last_name }
+    return Users.push(user)
+  }
 })
 
-const Schema = GraphQLSchema({
+const Schema = new GraphQLSchema({
   query: RootQuery,
   mutation: RootMutation
 })
@@ -38,7 +66,7 @@ const Schema = GraphQLSchema({
 app.use(
   "/graphql",
   graphqlHTTP({
-    schema: schema,
+    schema: Schema,
     graphiql: true
   })
 )
