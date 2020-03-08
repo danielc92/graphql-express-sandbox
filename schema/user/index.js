@@ -1,16 +1,15 @@
 const {
   GraphQLString,
   GraphQLID,
-  GraphQLList,
   GraphQLNonNull,
   GraphQLError
 } = require("graphql")
-const { UserType } = require("../../types")
+const { UserType, UserListType } = require("../../types")
 const Users = require("../../data/users.json")
 
 const userQueries = {
   users: {
-    type: GraphQLList(UserType),
+    type: UserListType,
     resolve(parent, args) {
       return Users
     }
