@@ -62,13 +62,24 @@ const RootMutation = new GraphQLObjectType({
         Users.push(user)
         return user
       }
+    },
+    findUser: {
+      type: UserType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(parent, args) {
+        const result = Users.find(u => String(u.id) === args.id)
+        console.log(
+          "this result",
+          result,
+          Users,
+          typeof args.id,
+          typeof Users[0].id
+        )
+        return result
+      }
     }
-    // findUser: {
-    //   type: UserType,
-    //   args: {
-    //     id: { type: new GraphQLNonNull(GraphQLID) }
-    //   }
-    // }
   }
 })
 
