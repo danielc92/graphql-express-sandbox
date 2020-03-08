@@ -2,7 +2,9 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
-  GraphQLList
+  GraphQLList,
+  GraphQLEnumType,
+  GraphQLInt
 } = require("graphql")
 
 const UserType = new GraphQLObjectType({
@@ -46,9 +48,27 @@ const BookingType = new GraphQLObjectType({
 
 const BookingListType = new GraphQLList(BookingType)
 
+const LogOptionsType = GraphQLEnumType(["WARNING", "ERROR", "INFO"])
+
+const LogType = new GraphQLObjectType({
+  name: "Log",
+  fields: () => {
+    return {
+      id: { type: GraphQLID },
+      message: { type: GraphQLString },
+      type: { type: LogOptionsType },
+      timestamp: { type: GraphQLInt }
+    }
+  }
+})
+
+const LogListType = new GraphQLList(LogType)
 module.exports = {
   UserType,
   UserListType,
   BookingType,
-  BookingListType
+  BookingListType,
+  LogType,
+  LogOptionsType,
+  LogListType
 }
