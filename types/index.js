@@ -30,6 +30,7 @@ const UserListType = new GraphQLList(UserType)
 
 const BookingType = new GraphQLObjectType({
   name: "Booking",
+  description: "This type relates to server bookings.",
   fields: () => {
     return {
       id: {
@@ -61,6 +62,7 @@ const LogOptionsType = new GraphQLEnumType({
 
 const LogType = new GraphQLObjectType({
   name: "Log",
+  description: "This type relates to server logs.",
   fields: () => {
     return {
       id: { type: GraphQLID },
