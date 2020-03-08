@@ -5,7 +5,9 @@ const {
   GraphQLString,
   GraphQLID,
   GraphQLSchema,
-  GraphQLList
+  GraphQLList,
+  GraphQLNonNull,
+  GraphQLError
 } = require("graphql")
 const Users = require("./data/users.json")
 const app = express()
@@ -48,13 +50,19 @@ const RootMutation = new GraphQLObjectType({
         id: { type: GraphQLID },
         first_name: { type: GraphQLString },
         last_name: { type: GraphQLString }
+      },
+      resolve(parent, args) {
+        const { id, first_name, last_name } = args
+
+        // Check if user exists first
+        const exists = Users.some(u => u.id === id)
+        if (exists) return new GraphQLError("This user id already exists")
+
+        let user = { id, first_name, last_name }
+        Users.push(user)
+        return user
       }
     }
-  },
-  resolve(parent, args) {
-    const { id, first_name, last_name } = args
-    let user = { id, first_name, last_name }
-    return Users.push(user)
   }
 })
 
