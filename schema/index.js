@@ -13,7 +13,8 @@ const RootQuery = new GraphQLObjectType({
 const RootMutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
-    ...userMutations
+    ...userMutations,
+    ...bookingMutations
   }
 })
 

@@ -1,17 +1,26 @@
 [
   {
+    "id": 1,
     "user_id": 1,
     "location": "Melbourne",
     "date": "2020-10-2"
   },
   {
+    "id": 2,
     "user_id": 1,
     "location": "Melbourne",
     "date": "2020-10-2"
   },
   {
+    "id": 3,
     "user_id": 1,
     "location": "Melbourne",
+    "date": "2020-10-2"
+  },
+  {
+    "id": 4,
+    "user_id": 2,
+    "location": "Adelaide",
     "date": "2020-10-2"
   }
 ]
