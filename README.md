@@ -1,6 +1,12 @@
 # Graphql sandbox
 
-This repo was made to test out GraphQL using javascript.
+This repo was made to test out GraphQL using javascript. Goes through some fundamentals such as;
+
+- Queries
+- Mutations
+- Types
+- Arguments
+- Variables
 
 ### Running
 
