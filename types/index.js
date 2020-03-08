@@ -28,6 +28,9 @@ const BookingType = new GraphQLObjectType({
   name: "Booking",
   fields: () => {
     return {
+      id: {
+        type: GraphQLID
+      },
       user_id: {
         type: GraphQLID
       },
