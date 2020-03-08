@@ -1,5 +1,5 @@
 const { BookingListType, BookingType } = require("../../types")
-const Bookings = require("../../data/bookings.json")
+let Bookings = require("../../data/bookings.json")
 const { GraphQLNonNull, GraphQLID, GraphQLString } = require("graphql")
 
 const bookingQueries = {
@@ -12,8 +12,6 @@ const bookingQueries = {
 }
 
 const bookingMutations = {
-  deleteBooking: {},
-  updateBooking: {},
   createBooking: {
     type: BookingType,
     args: {
@@ -25,10 +23,41 @@ const bookingMutations = {
       const booking = {
         user_id: parseInt(args.user_id),
         location: args.location,
-        date: args.date
+        date: args.date,
+        id: Bookings.length + 1
       }
       Bookings.push(booking)
       return booking
+    }
+  },
+  deleteBooking: {
+    type: BookingType,
+    args: {
+      id: { type: new GraphQLNonNull(GraphQLID) }
+    },
+    resolve(parent, args) {
+      Bookings = [...Bookings.filter(b => String(b.id) !== args.id)]
+      return Bookings
+    }
+  },
+  updateBooking: {
+    type: BookingType,
+    args: {
+      id: { type: new GraphQLNonNull(GraphQLID) },
+      location: { type: GraphQLString },
+      date: { type: GraphQLString }
+    },
+    resolve(parent, args) {
+      Bookings = [
+        ...Bookings.map(b => {
+          if (String(b.id) === args.id) {
+            const { location, date } = args
+            return { ...b, location, date }
+          }
+          return b
+        })
+      ]
+      return Bookings.find(b => String(b.id) === args.id)
     }
   }
 }
