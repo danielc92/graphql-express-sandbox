@@ -4,6 +4,7 @@ const {
   GraphQLID,
   GraphQLList,
   GraphQLEnumType,
+  GraphQLFloat,
   GraphQLInt
 } = require("graphql")
 
@@ -48,7 +49,14 @@ const BookingType = new GraphQLObjectType({
 
 const BookingListType = new GraphQLList(BookingType)
 
-const LogOptionsType = GraphQLEnumType(["WARNING", "ERROR", "INFO"])
+const LogOptionsType = new GraphQLEnumType({
+  name: "LogOptions",
+  values: {
+    WARNING: { value: "WARNING" },
+    INFO: { value: "INFO" },
+    ERROR: { value: "ERROR" }
+  }
+})
 
 const LogType = new GraphQLObjectType({
   name: "Log",
@@ -57,7 +65,7 @@ const LogType = new GraphQLObjectType({
       id: { type: GraphQLID },
       message: { type: GraphQLString },
       type: { type: LogOptionsType },
-      timestamp: { type: GraphQLInt }
+      timestamp: { type: GraphQLFloat }
     }
   }
 })
