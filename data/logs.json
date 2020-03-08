@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "log_message": "A log message",
+    "log_type": "INFO",
+    "log_timestamp": 1583661471568
+  },
+  {
+    "id": 2,
+    "log_message": "Parsing error occurred.",
+    "log_type": "ERROR",
+    "log_timestamp": 1583661471568
+  },
+  {
+    "id": 3,
+    "log_message": "An info log message",
+    "log_type": "INFO",
+    "log_timestamp": 1583661471568
+  },
+  {
+    "id": 4,
+    "log_message": "A warning log message.",
+    "log_type": "WARNING",
+    "log_timestamp": 1583661471568
+  }
+]
