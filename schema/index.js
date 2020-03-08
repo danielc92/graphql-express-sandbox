@@ -1,3 +1,4 @@
+const userFields = require("./user")
 const {
   GraphQLObjectType,
   GraphQLString,
@@ -8,32 +9,11 @@ const {
   GraphQLError
 } = require("graphql")
 
-const UserType = new GraphQLObjectType({
-  name: "User",
-  fields: () => {
-    return {
-      id: {
-        type: GraphQLID
-      },
-      first_name: {
-        type: GraphQLString
-      },
-      last_name: {
-        type: GraphQLString
-      }
-    }
-  }
-})
-
+const { UserType } = require("../types/index")
+const {userQueries, userMutations} = require('./user')
 const RootQuery = new GraphQLObjectType({
   name: "Query",
-  fields: {
-    users: {
-      type: GraphQLList(UserType),
-      resolve(parent, args) {
-        return Users
-      }
-    }
+  fields: userQueries
   }
 })
 
