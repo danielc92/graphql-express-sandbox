@@ -2,13 +2,15 @@ const { GraphQLObjectType, GraphQLSchema } = require("graphql")
 const { userQueries, userMutations } = require("./user")
 const { bookingQueries, bookingMutations } = require("./bookings")
 const { logQueries } = require("./logs")
+const { placeQueries } = require("./place")
 
 const RootQuery = new GraphQLObjectType({
   name: "Query",
   fields: {
     ...userQueries,
     ...bookingQueries,
-    ...logQueries
+    ...logQueries,
+    ...placeQueries
   }
 })
 
