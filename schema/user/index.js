@@ -10,7 +10,12 @@ const Users = require("../../data/users.json")
 const userQueries = {
   users: {
     type: UserListType,
+    args: {
+      first_name: { type: GraphQLString }
+    },
     resolve(parent, args) {
+      if (args.first_name)
+        return Users.filter(u => u.first_name === args.first_name)
       return Users
     }
   }
