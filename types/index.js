@@ -8,6 +8,7 @@ const {
   GraphQLInt
 } = require("graphql")
 
+const Users = require("../data/users.json")
 const UserType = new GraphQLObjectType({
   name: "User",
   description: "This type relates to server members.",
@@ -37,7 +38,13 @@ const PlaceType = new GraphQLObjectType({
       id: { type: GraphQLID },
       name: { type: GraphQLString },
       state: { type: GraphQLString },
-      country: { type: GraphQLString }
+      country: { type: GraphQLString },
+      owner: {
+        type: UserType,
+        resolve(parent, args) {
+          return Users.find(u => u.id === parent.owner_id)
+        }
+      }
     }
   }
 })
