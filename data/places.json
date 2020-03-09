@@ -3,18 +3,21 @@
     "name": "Holiday Inn",
     "state": "Victoria",
     "country": "Australia",
-    "id": 1
+    "id": 1,
+    "owner_id": 2
   },
   {
     "name": "Shark Lodge",
     "state": "Adelaide",
     "country": "Australia",
-    "id": 2
+    "id": 2,
+    "owner_id": 1
   },
   {
     "name": "Chicken Chop",
     "state": "Victoria",
     "country": "Australia",
-    "id": 3
+    "id": 3,
+    "owner_id": 2
   }
 ]
