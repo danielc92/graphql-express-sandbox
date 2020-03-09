@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Holiday Inn",
+    "state": "Victoria",
+    "country": "Australia",
+    "id": 1
+  },
+  {
+    "name": "Shark Lodge",
+    "state": "Adelaide",
+    "country": "Australia",
+    "id": 2
+  },
+  {
+    "name": "Chicken Chop",
+    "state": "Victoria",
+    "country": "Australia",
+    "id": 3
+  }
+]
