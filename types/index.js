@@ -28,6 +28,22 @@ const UserType = new GraphQLObjectType({
 
 const UserListType = new GraphQLList(UserType)
 
+const PlaceType = new GraphQLObjectType({
+  name: "Place",
+  description:
+    "This type relates to server places, a booking links to this type.",
+  fields: () => {
+    return {
+      id: { type: GraphQLID },
+      name: { type: GraphQLString },
+      state: { type: GraphQLString },
+      country: { type: GraphQLString }
+    }
+  }
+})
+
+const PlaceListType = new GraphQLList(PlaceType)
+
 const BookingType = new GraphQLObjectType({
   name: "Booking",
   description: "This type relates to server bookings.",
@@ -81,5 +97,7 @@ module.exports = {
   BookingListType,
   LogType,
   LogOptionsType,
-  LogListType
+  LogListType,
+  PlaceType,
+  PlaceListType
 }
